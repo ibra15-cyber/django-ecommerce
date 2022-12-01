@@ -1,0 +1,284 @@
+
+{% load static %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+
+{% comment %} this two were added to to render one of the banners in a html i got from boostrap {% endcomment %}
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="max-age=604800">
+{% comment %} ********************************************************************************* {% endcomment %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Bootstrap-ecommerce by Vosidiy M.">
+
+<title>Welcome to my ecommerce django store</title>
+
+<!-- jQuery -->
+<script src="/media/js/jquery-2.0.0.min.js" type="text/javascript"></script>
+
+<!-- Bootstrap4 files-->
+<script src="/media/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<link href="/media/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+
+<!-- Font awesome 5 -->
+<link href="/media/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
+
+<!-- custom style -->
+<link href="/media/css/ui.css" rel="stylesheet" type="text/css"/>
+<link href="/media/css/responsive.css" rel="stylesheet" />
+
+<!-- custom javascript -->
+<script src="/media/js/script.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	// jQuery code
+	
+/// some script
+
+// jquery ready start
+$(document).ready(function() {
+	// jQuery code
+
+
+
+
+    /////////////////  items slider. /plugins/slickslider/
+    if ($('/media/slider-banner-slick').length > 0) { // check if element exists
+        $('/media/slider-banner-slick').slick({
+              infinite: true,
+              autoplay: true,
+              slidesToShow: 1,
+              dots: false,
+              prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
+           	  nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
+        });
+    } // end if
+
+     /////////////////  items slider. /plugins/slickslider/
+    if ($('.slider-custom-slick').length > 0) { // check if element exists
+        $('.slider-custom-slick').slick({
+              infinite: true,
+              slidesToShow: 2,
+              dots: true,
+              prevArrow: $('.slick-prev-custom'),
+              nextArrow: $('.slick-next-custom')
+        });
+    } // end if
+
+  
+
+    /////////////////  items slider. /plugins/slickslider/
+    if ($('.slider-items-slick').length > 0) { // check if element exists
+        $('.slider-items-slick').slick({
+            infinite: true,
+            swipeToSlide: true,
+            slidesToShow: 4,
+            dots: true,
+            slidesToScroll: 2,
+            prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
+           	nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 640,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    } // end if
+
+    
+
+    /////////////////  items slider. /plugins/owlcarousel/
+    if ($('.slider-banner-owl').length > 0) { // check if element exists
+        $('.slider-banner-owl').owlCarousel({
+            loop:true,
+            margin:0,
+            items: 1,
+            dots: false,
+            nav:true,
+            navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+        });
+    } // end if 
+
+    /////////////////  items slider. /plugins/owlslider/
+    if ($('.slider-items-owl').length > 0) { // check if element exists
+        $('.slider-items-owl').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:true,
+            navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+            responsive:{
+                0:{
+                    items:1
+                },
+                640:{
+                    items:3
+                },
+                1024:{
+                    items:4
+                }
+            }
+        })
+    } // end if
+
+    /////////////////  items slider. /plugins/owlcarousel/
+    if ($('.slider-custom-owl').length > 0) { // check if element exists
+        var slider_custom_owl = $('.slider-custom-owl');
+        slider_custom_owl.owlCarousel({
+            loop: true,
+            margin:15,
+            items: 2,
+            nav: false,
+        });
+
+        // for custom navigation
+        $('.owl-prev-custom').click(function(){
+            slider_custom_owl.trigger('prev.owl.carousel');
+        });
+
+        $('.owl-next-custom').click(function(){
+           slider_custom_owl.trigger('next.owl.carousel');
+        });
+
+    } // end if 
+
+});
+// jquery end
+</script>
+
+{% comment %} ************************************************trying his carasoul  {% endcomment %} 
+
+
+{% comment %} <link href="{% static 'home-assets/img/logo 2.jpg' %}" rel="icon"> {% endcomment %}
+<link href="{% static 'home-assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link href="{% static 'home-assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'home-assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+<link href="{% static 'home-assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+<link href="{% static 'home-assets/vendor/aos/aos.css' %}" rel="stylesheet">
+<link href="{% static 'home-assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+<link href="{% static 'home-assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+<link href="{% static 'home-assets/css/main.css' %}" rel="stylesheet">
+
+{% comment %} *************************************************************************************************************************************************** {% endcomment %}
+
+
+		{% comment %} ******************************************* testing his carousel ***********************************88
+		 {% endcomment %}
+
+		 <script src="{% static 'home-assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+		 <script src="{% static 'home-assets/vendor/aos/aos.js' %}"></script>
+		 <script src="{% static 'home-assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+		 <script src="{% static 'home-assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+		 <script src="{% static 'home-assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+		 <script src="{% static 'home-assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+		 <script src="{% static 'home-assets/vendor/php-email-form/validate.js' %}"></script>
+		 <script src="{% static 'home-assets/js/main.js' %}"></script> 
+{% comment %} ****************************************************************************************************************************************	    {% endcomment %}
+
+
+{% comment %} ******************************* PLUGINS TO HAVE CAROUSEL **********************************************************  {% endcomment %}
+<link href="/media/plugins/slickslider/slick.css" rel="stylesheet" type="text/css">
+<link href="/media/plugins/slickslider/slick-theme.css" rel="stylesheet" type="text/css">
+<script src="/media/plugins/slickslider/slick.min.js"></script>
+<link href="/media/plugins/owlcarousel/assets/owl.carousel.css" rel="stylesheet">
+<link href="/media/plugins/owlcarousel/assets/owl.theme.default.css" rel="stylesheet">
+<script src="/media/plugins/owlcarousel/owl.carousel.min.js"></script>
+</head>
+<body>
+
+	<header class="section-header">
+    
+		<nav class="navbar navbar-dark navbar-expand p-0 bg-dark">
+		<div class="container">
+			<ul class="navbar-nav d-none d-md-flex mr-auto">
+				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Delivery</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Payment</a></li>
+			</ul>
+			<ul class="navbar-nav">
+				<li class="nav-item"><a href="#" class="nav-link"> Call: +233543986559 </a></li>
+				<li class="nav-item dropdown">
+					 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> English </a>
+					<ul class="dropdown-menu dropdown-menu-right" style="max-width: 100px;">
+						<li><a class="dropdown-item" href="#">Arabic</a></li>
+						<li><a class="dropdown-item" href="#">Russian </a></li>
+					</ul>
+				</li>
+			</ul> <!-- list-inline //  -->
+		  </div> <!-- navbar-collapse .// -->
+		 <!-- container //  -->
+		</nav> <!-- header-top-light.// -->
+		
+		<section class="header-main border-bottom">
+			<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-2 col-4">
+				<div class="brand-wrap">
+					<a href="/" ><img class="logo" src="/media/logo.png"> </a>
+				</div> <!-- brand-wrap.// -->
+			</div>
+			<div class="col-lg-6 col-sm-12">
+
+				<form action="{% url 'search' %}" class="search" method="POST">{%csrf_token%}
+					<div class="input-group w-100">
+						<input type="text" name="text" class="form-control" placeholder="Search">
+						<div class="input-group-append">
+						  <button class="btn btn-primary" type="submit">
+							<i class="fa fa-search"></i>
+						  </button>
+						</div>
+					</div>
+				</form> <!-- search-wrap .end// -->
+
+			</div> <!-- col.// -->
+			<div class="col-lg-4 col-sm-6 col-8">
+				<div class="widgets-wrap float-md-right">
+					<div class="widget-header  mr-3">
+						<a href=" {% url 'cart' %}" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></a>
+						<span class="badge badge-pill badge-danger notify">{{request.user.profile.get_cart_count}}</span>
+					</div>
+					<div class="widget-header icontext">
+						<a href="" class="icon icon-sm rounded-circle border"><img src="media/profile/person.png" /></i></a>
+						{% comment %} {% url 'profile' username %}" {% endcomment %}
+						<div class="text">
+							<span class="text-muted">Welcome!</span>
+							<div> 
+								<a href="{% url 'login' %}">Sign in</a> |  
+								<a href="/accounts/register"> Register</a>
+							</div>
+						</div>
+					</div>
+				</div> <!-- widgets-wrap.// -->
+			</div> <!-- col.// -->
+		</div> <!-- row.// -->
+			</div> <!-- container.// -->
+		</section> <!-- header-main .// -->
+		</header> <!-- section-header.// -->
+
+
+
+
+
+{% block content %}
+
+{% endblock %}
+
+
+
+</body>
+</html> 

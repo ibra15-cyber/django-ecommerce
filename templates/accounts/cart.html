@@ -1,0 +1,131 @@
+{% extends "base/base.html" %}
+
+{% block  content %}
+<section class="section-content padding-y">
+    <div class="container">
+    
+    <div class="row">
+        <main class="col-md-9">
+    <div class="card">
+    
+    <table class="table table-borderless table-shopping-cart">
+    <thead class="text-muted">
+    <tr class="small text-uppercase">
+      <th scope="col">Product</th>
+      <th scope="col" width="120">Quantity</th>
+      <th scope="col" width="120">Price</th>
+      <th scope="col" class="text-right" width="200"> </th>
+    </tr>
+    </thead>
+    <tbody>
+
+        {% for cart_item in cart.cart_items.all %}
+    <tr>
+        <td>
+            
+            <figure class="itemside">
+                <div class="aside"><img src="/media/{{cart_item.product.product_images.first.image}}" class="img-sm"></div>
+                <figcaption class="info">
+                    <a href="#" class="title text-dark">{{cart_item.product.product_name}}</a>
+                    <p class="text-muted small">Size: {{cart_item.product.size_variant.size_name}}, Color: blue, <br> Brand: Gucci</p>
+                </figcaption>
+            </figure>
+        </td>
+        <td> 
+            <select class="form-control">
+                <option>1</option>
+                <option>2</option>	
+                <option>3</option>	
+                <option>4</option>	
+            </select> 
+        </td>
+        <td> 
+            <div class="price-wrap"> 
+                <var class="price">${{cart_item.get_product_price}}</var> 
+                {% comment %} <small class="text-muted"> $315.20 each </small>  {% endcomment %}
+            </div> <!-- price-wrap .// -->
+        </td>
+        <td class="text-right"> 
+        <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
+        <a href="{% url 'remove_cart' cart_item.uid %}" class="btn btn-light"> Remove </a>
+        </td>
+        {% comment %} {% url 'remove_cart' cart_item.uid %} {% endcomment %}
+        {% comment %} /remove-cart/{{cart_item.uid}} since we are redirecting we can't hardcode {% endcomment %}
+    </tr>
+
+    {% endfor %}
+    
+    </tbody>
+    </table>
+    
+    <div class="card-body border-top">
+        <a href="#" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+        <a href="/" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+    </div>	
+    </div> <!-- card.// -->
+    
+    <div class="alert alert-success mt-3">
+        <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
+    </div>
+    
+        </main> <!-- col.// -->
+        <aside class="col-md-3">
+            <div class="card mb-3">
+                <div class="card-body">
+
+                <form method="POST"> {% csrf_token %}
+
+                    {% include 'base/alert.html' %}
+                    
+                    {% comment %} if you have a coupon, enter it and submit
+                    if it is valid the logic will apply: 1. valid; 2. used; 3. not used {% endcomment %}
+                    <div class="form-group">
+                        <label>Have coupon?</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="coupon" placeholder="Coupon code">
+                            <span class="input-group-append"> 
+                                <button type='submit' class="btn btn-primary">Apply</button>
+                            </span>
+                        </div>
+                    </div>
+                    
+
+                    {% comment %} get whatever we enter above in a button here; and onclick it should invoke a delete fn to remove it  {% endcomment %}
+                    {% if cart.coupon %}
+                        <a href="{% url 'remove_coupon' cart.uid %}" class="btn btn-success"> {{cart.coupon.coupon_code}} </a>
+                    {% endif %}
+
+                </form>
+                </div> <!-- card-body.// -->
+            </div>  <!-- card .// -->
+            <div class="card">
+                <div class="card-body">
+                        <dl class="dlist-align">
+                          <dt>Total price:</dt>
+                          <dd class="text-right">{{cart.get_cart_total_before_coupon}}</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                          <dt>Discount:</dt>
+                          <dd class="text-right">{{cart.coupon.discount_price}}</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                          <dt>Total:</dt>
+                          <dd class="text-right  h5"><strong>{{cart.get_cart_total}}</strong></dd>
+                        </dl>
+                        <hr>
+                        <p class="text-center mb-3">
+                            <img src="/media/payments/mastercard_96px.png" height="26">
+                        </p>
+                        
+                </div> <!-- card-body.// -->
+            </div>  <!-- card .// -->
+        </aside> <!-- col.// -->
+    </div>
+    
+    </div> <!-- container .//  -->
+    </section>
+
+
+
+
+{% endblock %}

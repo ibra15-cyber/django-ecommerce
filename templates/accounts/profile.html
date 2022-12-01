@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+
+<h1>Name: {{user.first_name}} {{user.last_name}}</h1>
+<h5>Username: {{user.email}} </h5>
+<h5> {{user.profile.profile_image}}
+<H6> user is staff:  {{user.is_staff}} </h6>
+<img src="/media/{{user.product_images.first.image}}" />
+
+<h2>{{user.carts}} <h2>
+
+
+<a href="{% url 'edit_profile' user.username %}" >Edit account </a>
+
+    
+
+{% endblock  %}

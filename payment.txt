@@ -1,0 +1,64 @@
+pip install razorpay
+
+create account from razorpay.com
+
+signin > settings > apikeys 
+
+regenerate key and nulify the old
+
+
+copy id and secrete key to settings
+
+KEY = " "
+SECRETE = " "
+
+in cart the section payment edit it this way
+
+copy <script> checkout.js </script> to the button of the html you want to configure razorpay 
+ours is the cart.html
+
+turn the anchor tag that says "Make Purchase" and add id="rzp-button1" you can find this at razarpay pyhthon integration payment
+the same place we got the script above
+
+copy the script with the var options down the same html file for editing
+
+paste your key id and secrete key
+you can change the name field
+amount 
+description
+image 
+order id
+refill, notes and theme can be edited: he deleted refill and notes
+
+in the views.py
+import razarpay
+from django.conf import settings
+ 
+client = razarpay.Client(auth = (settings.KEY, settings.SECRET))
+payment = client.order.create({'amount' : cart_obj.get_cart_total() * 100,  'currency': "INR", 'payment_capture': 1})
+cart_obj.razor_pay_order_id = payment['id'] 
+cart_obj.save()
+
+then we pass payment in context as 'payment': payement
+add razarpay to Cart Model class 
+razor_pay_order_id = models.CharField(max_length, null=True, blank=True)
+razor_pay_payment_id = models.CharField(max_length, null=True, blank=True)
+razor_pay_payment_signature= models.CharField(max_length, null=True, blank=True)
+
+back in the cart.html continue to edit the options dictionary
+"amount": "{{payment.amount}}"
+"order_id": "{{payment.id}}"
+
+edit the reponse from having 3 stacked warnings alerts into catching the url link
+
+window.location.href = 'http://127.0.0.1:8000/accounts/success/?razor_pay_payment_id=${reponse.razor_pay_payment_id}&order_id=${response.razor_pay_order_id}&payment_signature=${response.razor_pay_payment_signature}'
+edited it 
+window.location.href = 'http://127.0.0.1:8000/accounts/success/?order_id=${response.order_id}
+
+create a success fn to handle successful payment
+def success(request):
+    order_id = request.GET.get('order_id')
+    cart = Cart.objects.get(razor_pay_order_id = order_id)
+    cart.is_paid = True
+    cart.save()
+    return HttpResponse("payment success)
